@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="AssetLibrary.cpp" />
     <ClCompile Include="collision.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
@@ -137,7 +138,6 @@
     <ClInclude Include="Gamestate.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="projectiles.h" />
-    <ClInclude Include="Sprite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

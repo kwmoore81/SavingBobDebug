@@ -110,11 +110,12 @@ public:
 			if (nEnemyshipsActive == 0)
 			{
 				for (int i = 0; i < enemyships.size(); ++i)
+					//for (int j = 0; j < bullets.size(); ++j)
 					if (enemyships[i].isActive)
 					{
 						enemyships[i].update();
-						if (player.isActive)
-							doCollision(enemyships[i], bullets[i]);
+						//if (player.isActive)
+							//doCollision(enemyships[i], bullets[j]);
 					}
 			}
 					else nEnemyshipsActive++;
@@ -124,7 +125,7 @@ public:
 				{
 					doCollision(bullets[i], bullets[j]);
 				}
-			
+
 			doCollision(border, playership);
 			
 	}

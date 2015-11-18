@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-
+#include "time.h"
 
 
 class Player : public GameObject
@@ -9,15 +9,18 @@ public:
 	float speed;
 	float fireDelay;
 	float rateOfFire;
+	float eRateOfFire;
+	float eFireDelay;
 	float sdt;
 	
-	Player() : speed(100), rateOfFire(0.4f), fireDelay(0.f)
+	Player() : speed(100), rateOfFire(0.4f), fireDelay(0.f), eRateOfFire(3.0f), eFireDelay(0.f)
 	{
 		width = 128; height = 128; centered = true; color = WHITE;
 		animationName = "Thrusters";
 		textureName	  = "Player";
+		srand(time(NULL));
 	}
-
+	
 	virtual void onCollision(GameObject &go, float distance)
 	{
 		if (x > 745){x = 744;}

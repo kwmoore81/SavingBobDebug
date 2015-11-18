@@ -4,12 +4,13 @@
 #include "Player.h"
 
 
-class Enemy : public GameObject
+
+class Enemy : public Player
 {
 public:
 	float velx, vely; // velocity of our bullet
 	float lifetime; // how long it lasts
-
+	
 	Enemy(float a_x, float a_y, float dx, float dy, float lifespan)
 	{
 		
@@ -20,10 +21,11 @@ public:
 		vely = dy;
 
 		lifetime = lifespan;
-
+		
 		width = 128; height = 128; centered = true; color = WHITE;
-		textureName = "Bullet";
-
+		textureName = "Enemy";
+		animationName = "eThrusters";
+		
 	}
 
 	virtual void onCollision(GameObject &go, float distance)
@@ -33,25 +35,29 @@ public:
 
 	virtual void update()
 	{
-		//GameObject::update(); // go ahead and update the base gameObject class
+		
 		lifetime -= sfw::getDeltaTime();
 		isActive = lifetime > 0; // the bullet is no longer active when the lifetime reduces to 0
 
 								 // Euler Integration to move our bullet
 		x += velx * sfw::getDeltaTime();
 		y += vely * sfw::getDeltaTime();
-
 		
-		//gs()->makeEnemy(650, 300, 0, 0, 4.f); // Now we can use this to draw stuff!
-			
+		GameObject::update();
 		
+		if (animTimer > getAnimationDuration(textureName, animationName))
+		{
+			animTimer = 0;
+			animationName = "eThrusters";
+		}
+		x--;
 	}
 
-	virtual void draw()
-	{
+	//virtual void draw()
+	//{
 
-		sfw::drawTexture(getTexture("Enemy"), 650, 300, 128, 128, 0, true, 0, WHITE);
-		//sfw::drawLine(x, y, x + 70, y , MAGENTA);
-	}
+	//	sfw::drawTexture(getTexture("Enemy"), 650, 300, 128, 128, 0, true, 0, WHITE);
+	//	
+	//}
 
 };
