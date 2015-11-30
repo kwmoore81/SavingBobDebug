@@ -2,25 +2,26 @@
 #include "GameObject.h"
 #include "GameState.h"
 #include "Player.h"
+#include "projectiles.h"
 
 
 
 class Enemy : public Player
 {
 public:
-	float velx, vely; // velocity of our bullet
-	float lifetime; // how long it lasts
+	float eVelx, eVely; // velocity of our bullet
+	float eLifetime; // how long it lasts
 	
-	Enemy(float a_x, float a_y, float dx, float dy, float lifespan)
+	Enemy(float e_x, float e_y, float ex, float ey, float eLifespan)
 	{
 		
-		x = a_x;
-		y = a_y;
+		x = e_x;
+		y = e_y;
 
-		velx = dx;
-		vely = dy;
+		eVelx = ex;
+		eVely = ey;
 
-		lifetime = lifespan;
+		eLifetime = eLifespan;
 		
 		width = 128; height = 128; centered = true; color = WHITE;
 		textureName = "Enemy";
@@ -30,20 +31,22 @@ public:
 
 	virtual void onCollision(GameObject &go, float distance)
 	{
-		// we could react to collisions here
+		width = 128; height = 128; centered = true; color = WHITE;
+		animationName = "Boom";
+		textureName = "Explosion";
 	}
 
 	virtual void update()
 	{
 		
-		lifetime -= sfw::getDeltaTime();
-		isActive = lifetime > 0; // the bullet is no longer active when the lifetime reduces to 0
+		eLifetime -= sfw::getDeltaTime();
+		isActive = eLifetime > 0; // the bullet is no longer active when the lifetime reduces to 0
 
 								 // Euler Integration to move our bullet
-		x += velx * sfw::getDeltaTime();
-		y += vely * sfw::getDeltaTime();
+		x += eVelx * sfw::getDeltaTime();
+		y += eVely * sfw::getDeltaTime();
 		
-		GameObject::update();
+		//GameObject::update();
 		
 		if (animTimer > getAnimationDuration(textureName, animationName))
 		{
@@ -51,6 +54,8 @@ public:
 			animationName = "eThrusters";
 		}
 		x--;
+
+		
 	}
 
 	//virtual void draw()

@@ -56,7 +56,7 @@ public:
 	// This REQUIRES that we use animations always when drawing, even if it's only one frame!
 	virtual void update()
 	{
-		animTimer	+= sfw::getDeltaTime();
+		animTimer += sfw::getDeltaTime();
 		currentFrame = sampleAnimation(textureName, animationName, animTimer);
 	}
 

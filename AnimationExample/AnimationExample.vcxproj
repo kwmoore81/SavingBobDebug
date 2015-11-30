@@ -133,9 +133,11 @@
     <ClInclude Include="AssetLibrary.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="collision.h" />
+    <ClInclude Include="Credits.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Gamestate.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="projectiles.h" />
   </ItemGroup>

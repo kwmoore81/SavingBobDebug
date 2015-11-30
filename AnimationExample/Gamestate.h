@@ -26,6 +26,7 @@ class GameState
 	Nebula nebula1;
 	Nebula nebula2;
 	Player playership;
+	PlanetBob planetBob;
 	std::vector<Enemy> enemyships;
 	std::vector<Projectile> bullets;
 	
@@ -89,6 +90,7 @@ public:
 		asteroid2.update();
 		nebula1.update();
 		nebula2.update();
+		planetBob.update();
 
 		if (player.isActive)
 			playership.update();
@@ -105,17 +107,19 @@ public:
 			}
 			else nBulletsActive++;
 
+
+			//Got to Fix this!!!!!!!!!!!!
 			int nEnemyshipsActive = 0;
 
 			if (nEnemyshipsActive == 0)
 			{
 				for (int i = 0; i < enemyships.size(); ++i)
-					//for (int j = 0; j < bullets.size(); ++j)
+					for (int j = 0; j < bullets.size(); ++j)
 					if (enemyships[i].isActive)
 					{
 						enemyships[i].update();
-						//if (player.isActive)
-							//doCollision(enemyships[i], bullets[j]);
+						if (player.isActive)
+							doCollision(enemyships[i], bullets[j]);
 					}
 			}
 					else nEnemyshipsActive++;
@@ -135,6 +139,7 @@ public:
 	{
 		space1.draw();
 		space2.draw();
+		planetBob.draw();
 		asteroid1.draw();
 		asteroid2.draw();
 		nebula1.draw();

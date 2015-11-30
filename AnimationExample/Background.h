@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include"Player.h"
 
 
 class Space : public GameObject
@@ -23,6 +24,45 @@ public:
 		}
 	}
 	};
+class CreditsBG : public GameObject
+{
+public:
+
+	CreditsBG()
+	{
+		x = 400; y = 300; width = 800; height = 600; centered = true; color = WHITE;
+		textureName = "CreditsPage";
+
+	}
+	virtual void update()
+	{
+
+		
+	}
+};
+class PlanetBob : public GameObject
+{
+public:
+
+	PlanetBob()
+	{
+		x = 275; y = 350; width = 128; height = 128;  centered = true; color = WHITE;
+		
+		textureName = "PlanetBob";
+		animationName = "Rotation";
+
+	}
+	virtual void update()
+	{
+		GameObject::update();
+		if (animTimer > getAnimationDuration(textureName, animationName))
+		{
+			animTimer = 0;
+			animationName = "Rotation";
+		}
+		
+	}
+};
 
 class Asteroid : public GameObject
 {
@@ -77,4 +117,108 @@ public:
 		width = 800; height = 600; centered = true;
 	}
 
+};
+
+class Play : public GameObject
+{
+public:
+
+	Play()
+	{
+		x = 400; y = 150; width = 128; height = 128; centered = true; color = WHITE;
+		textureName = "Play";
+
+	}
+	virtual void update()
+	{
+
+		if (MOUSE_BUTTON_LEFT)
+		{
+			
+		}
+	}
+};
+
+class Exit : public GameObject
+{
+public:
+
+	Exit()
+	{
+		x = 740; y = 50; width = 128; height = 128; centered = true; color = WHITE;
+		textureName = "Exit";
+
+	}
+	virtual void update()
+	{
+		
+
+	}
+};
+
+class Credits : public GameObject
+{
+public:
+
+	Credits()
+	{
+		x = 60; y = 50; width = 128; height = 128; centered = true; color = WHITE;
+		textureName = "Credits";
+
+	}
+	virtual void update()
+	{
+
+
+	}
+};
+class SavingTitle : public GameObject
+{
+public:
+
+	SavingTitle()
+	{
+		x = 400; y = 500; width = 600; height = 142; centered = true; color = WHITE;
+		textureName = "SavingTitle";
+
+	}
+	virtual void update()
+	{
+
+
+	}
+};
+
+class BobTitle : public GameObject
+{
+public:
+
+	BobTitle()
+		{
+			x = 580; y = 350; width = 349; height = 179; centered = true; color = WHITE;
+			textureName = "BobTitle";
+
+		}
+		virtual void update()
+		{
+
+
+		}
+};
+
+class Back : public GameObject
+{
+public:
+
+	Back()
+	{
+		x = 90; y = 570; width = 177; height = 50; centered = true; color = WHITE;
+		textureName = "Back";
+
+	}
+	virtual void update()
+	{
+
+
+	}
 };

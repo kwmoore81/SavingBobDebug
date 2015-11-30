@@ -15,7 +15,7 @@ public:
 	
 	Player() : speed(100), rateOfFire(0.4f), fireDelay(0.f), eRateOfFire(3.0f), eFireDelay(0.f)
 	{
-		width = 128; height = 128; centered = true; color = WHITE;
+		x = 150; y = 300; width = 128; height = 128; centered = true; color = WHITE;
 		animationName = "Thrusters";
 		textureName	  = "Player";
 		srand(time(NULL));

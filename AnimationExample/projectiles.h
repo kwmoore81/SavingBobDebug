@@ -26,7 +26,7 @@ public:
 	
 	virtual void onCollision(GameObject &go, float distance)
 	{
-		// we could react to collisions here
+		
 	}
 
 	virtual void update()
@@ -45,7 +45,7 @@ public:
 	{
 	
 		sfw::drawTexture( getTexture("Bullet") , x + 50, y + 4, 64, 64, 0, true, 0, WHITE);
-		//sfw::drawLine(x, y, x + 70, y , MAGENTA);
+		
 	}
 	
 };
