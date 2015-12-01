@@ -1,9 +1,9 @@
 #pragma once
 #include "Background.h"
+#include "Globals.h"
 
 
-
-class CreditsPage
+class CreditsPage 
 {
 	
 	CreditsBG creditsBG;

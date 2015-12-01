@@ -6,6 +6,7 @@
 #include "Menu.h"
 #include "Credits.h"
 #include "gameover.h"
+#include "Background.h"
 
 
 
@@ -48,7 +49,7 @@ void main()
 	creditsPage.creditsPG();
 	//gameOverPage.gameOverPG();
 	
-	
+
 
 	while (sfw::stepContext())
 	{

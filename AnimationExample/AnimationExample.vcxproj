@@ -124,9 +124,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssetLibrary.cpp" />
+    <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Gamestate.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="gameover.h" />
     <ClInclude Include="Gamestate.h" />
+    <ClInclude Include="Globals.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="projectiles.h" />

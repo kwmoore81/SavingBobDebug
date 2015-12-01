@@ -5,6 +5,8 @@
 #include "eProjectiles.h"
 #include "Background.h"
 #include <vector>
+#include "Menu.h"
+#include "Globals.h"
 
 
 /*
@@ -41,6 +43,7 @@ public:
 		nebula2.x = 2000;
 		nebula2.width = 600;
 		nebula2.textureName = "Nebula2";
+		
 	}
 
 	// Parameters may match the constructor for the bullet
@@ -116,7 +119,7 @@ public:
 			if (bullets[i].isActive)
 			{
 				bullets[i].update();
-				
+
 			}
 			else nBulletsActive++;
 
@@ -132,36 +135,38 @@ public:
 				}
 				else nEBulletsActive++;
 
-		//Enemy Ships
-		int nEnemyshipsActive = 0;
+				//Enemy Ships
+				int nEnemyshipsActive = 0;
 
-		if (nEnemyshipsActive == 0)
-			{
-				for (int i = 0; i < enemyships.size(); ++i)
+				if (nEnemyshipsActive == 0)
 				{
-					if (enemyships[i].isActive)
+					for (int i = 0; i < enemyships.size(); ++i)
 					{
-						enemyships[i].update();
-
-						for (int j = 0; j < bullets.size(); ++j)
-
+						if (enemyships[i].isActive)
 						{
-							if (bullets[j].isActive && enemyships[i].textureName != "Explosion")
+							enemyships[i].update();
+
+							for (int j = 0; j < bullets.size(); ++j)
+
 							{
-								doCollision(enemyships[i], bullets[j]);
+								if (bullets[j].isActive && enemyships[i].textureName != "Explosion")
+								{
+									doCollision(enemyships[i], bullets[j]);
+
+								}
 
 							}
-
 						}
 					}
 				}
-			}
-					else nEnemyshipsActive++;
-			
+				else nEnemyshipsActive++;
 
-			doCollision(border, playership);
-			
+
+				doCollision(border, playership);
+
 	}
+
+	
 
 	// Draw everything now!
 	void draw()
@@ -218,8 +223,7 @@ public:
 
 					playership.isActive = false;
 				
-						//menuSelection = 5;
-					
+						menuSelection = 5;
 
 				}
 

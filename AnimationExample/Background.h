@@ -132,10 +132,7 @@ public:
 	virtual void update()
 	{
 
-		if (MOUSE_BUTTON_LEFT)
-		{
-			
-		}
+		
 	}
 };
 
