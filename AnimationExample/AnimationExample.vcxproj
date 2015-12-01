@@ -126,6 +126,7 @@
     <ClCompile Include="AssetLibrary.cpp" />
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Gamestate.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
@@ -135,7 +136,9 @@
     <ClInclude Include="collision.h" />
     <ClInclude Include="Credits.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="eProjectiles.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="gameover.h" />
     <ClInclude Include="Gamestate.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />

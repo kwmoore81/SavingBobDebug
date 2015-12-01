@@ -172,6 +172,22 @@ public:
 
 	}
 };
+class GameOverBG : public GameObject
+{
+public:
+
+	GameOverBG()
+	{
+		x = 400; y = 300; width = 800; height = 600; centered = true; color = WHITE;
+		textureName = "GameOver";
+
+	}
+	virtual void update()
+	{
+
+
+	}
+};
 class SavingTitle : public GameObject
 {
 public:

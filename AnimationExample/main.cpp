@@ -5,6 +5,7 @@
 #include "GameState.h"
 #include "Menu.h"
 #include "Credits.h"
+#include "gameover.h"
 
 
 
@@ -19,11 +20,13 @@ void main()
 	loadTexture("Nebula2", "../res/nebula2.png", 1, 1);
 	loadTexture("Player", "../res/playership.png", 8, 1);
 	loadTexture("Bullet", "../res/bullet.png", 1, 1);
+	loadTexture("eBullet", "../res/enemyBullet.png", 1, 1);
 	loadTexture("Enemy", "../res/enemyship.png", 9, 1);
 	loadTexture("Explosion", "../res/explosion.png", 4, 4);
 	loadTexture("Play", "../res/PlayBlue.png", 1, 1);
 	loadTexture("Exit", "../res/ExitBlue.png", 1, 1);
 	loadTexture("Credits", "../res/CreditsBlue.png", 1, 1);
+	loadTexture("GameOver", "../res/GameOver.jpg", 1, 1);
 	loadTexture("Options", "../res/OptionsBlue.png", 1, 1);
 	loadTexture("Crosshair", "../res/crosshair.png", 1, 1);
 	loadTexture("SavingTitle", "../res/savingTitle.png", 1, 1);
@@ -33,15 +36,17 @@ void main()
 	loadTexture("CreditsPage", "../res/Credits.jpg", 1, 1);
 	addAnimation("Player", "Thrusters", { 0,1,2,3,4,5,6,7 });
 	addAnimation("Enemy", "eThrusters", { 0,1,2,3,4,5,6,7,8 });
-	addAnimation("Explostion", "Boom", { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 });
+	addAnimation("Explosion", "Boom", { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 });
 	addAnimation("PlanetBob", "Rotation", { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18 });
 
 	GameState game;
 	MenuState menu;
 	CreditsPage creditsPage;
+	GameOverBG gameOverPage;
 	menu.menuLayout();
 	game.start();
 	creditsPage.creditsPG();
+	//gameOverPage.gameOverPG();
 	
 	
 
@@ -66,6 +71,9 @@ void main()
 		case 4:
 			sfw::termContext();
 			break;
+		case 5:
+			gameOverPage.update();
+			gameOverPage.draw();
 		}
 
 		

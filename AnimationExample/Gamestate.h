@@ -2,8 +2,10 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "projectiles.h"
+#include "eProjectiles.h"
 #include "Background.h"
 #include <vector>
+
 
 /*
 GameState is the 'database' of the game.
@@ -29,6 +31,7 @@ class GameState
 	PlanetBob planetBob;
 	std::vector<Enemy> enemyships;
 	std::vector<Projectile> bullets;
+	std::vector<eProjectile> eBullets;
 	
 public:
 	void start()
@@ -55,11 +58,21 @@ public:
 		bullets.push_back(Projectile(x, y, dx, dy, lifespan));
 	}
 
-	// Mimic the makeBullet pattern- 
-	void makeExplosion()
+	void makeEBullet(float x, float y, float dx, float dy, float lifespan)
 	{
-		
+		for (int i = 0; i < eBullets.size(); ++i)
+		{
+			if (!eBullets[i].isActive) // Find an empty spot in our vector
+			{
+				eBullets[i] = eProjectile(x, y, dx, dy, lifespan);
+				return;
+			}
+		}
+		// if there is no empty spot, generate a new bullet into the vector
+		eBullets.push_back(eProjectile(x, y, dx, dy, lifespan));
 	}
+	
+	//Spawn Enemy's
 	void makeEnemy(float x, float y, float dx, float dy, float lifespan)
 	{
 		for (int i = 0; i < enemyships.size(); ++i)
@@ -97,44 +110,60 @@ public:
 
 		// example useful for determining when to spawn a new wave of enemies.
 		int nBulletsActive = 0;
+		int nEBulletsActive = 0;
 
 		for (int i = 0; i < bullets.size(); ++i)
 			if (bullets[i].isActive)
 			{
 				bullets[i].update();
-				if (player.isActive)
-					doCollision(player, bullets[i]);
+				
 			}
 			else nBulletsActive++;
 
+			//Enemy Bullets
+			for (int i = 0; i < eBullets.size(); ++i)
+				if (eBullets[i].isActive)
+				{
+					eBullets[i].update();
+					if (playership.textureName != "Explosion")
+					{
+						doCollision(eBullets[i], playership);
+					}
+				}
+				else nEBulletsActive++;
 
-			//Got to Fix this!!!!!!!!!!!!
-			int nEnemyshipsActive = 0;
+		//Enemy Ships
+		int nEnemyshipsActive = 0;
 
-			if (nEnemyshipsActive == 0)
+		if (nEnemyshipsActive == 0)
 			{
 				for (int i = 0; i < enemyships.size(); ++i)
-					for (int j = 0; j < bullets.size(); ++j)
+				{
 					if (enemyships[i].isActive)
 					{
 						enemyships[i].update();
-						if (player.isActive)
-							doCollision(enemyships[i], bullets[j]);
+
+						for (int j = 0; j < bullets.size(); ++j)
+
+						{
+							if (bullets[j].isActive && enemyships[i].textureName != "Explosion")
+							{
+								doCollision(enemyships[i], bullets[j]);
+
+							}
+
+						}
 					}
+				}
 			}
 					else nEnemyshipsActive++;
-			// Collision detection between two objects of the same type
-			for (int i = 0; i + 1 < bullets.size(); ++i)
-				for (int j = i + 1; j < bullets.size(); ++j)
-				{
-					doCollision(bullets[i], bullets[j]);
-				}
+			
 
 			doCollision(border, playership);
 			
 	}
 
-	// DRaw everything now!
+	// Draw everything now!
 	void draw()
 	{
 		space1.draw();
@@ -144,20 +173,61 @@ public:
 		asteroid2.draw();
 		nebula1.draw();
 		nebula2.draw();
+
 		
-		if (player.isActive) playership.draw();
+		
 
 		for (int i = 0; i < bullets.size(); ++i)
 			if (bullets[i].isActive)
 				bullets[i].draw();
+
 		for (int i = 0; i < enemyships.size(); ++i)
+		{
 			if (enemyships[i].isActive)
 				enemyships[i].draw();
 
+			if (enemyships[i].textureName == "Explosion")
+			{
+				if (enemyships[i].currentFrame == 15)
+				{
+
+					enemyships[i].isActive = false;
+
+				}
+
+			}
+
+
+		}
+
+
+		for (int i = 0; i < eBullets.size(); ++i)
+		{
+			if (eBullets[i].isActive)
+				eBullets[i].draw();
+		}
+
+		//playership explosion
+		if (player.isActive)
+		{
+			playership.draw();
+			if (playership.textureName == "Explosion")
+			{
+				if (playership.currentFrame == 15)
+				{
+
+					playership.isActive = false;
+				
+						//menuSelection = 5;
+					
+
+				}
+
+			}
+		}
+		
 		
 	}
-
-	// Needs some way to 'spawn/destroy' bullets/enemies.
-
-	// Changes in gameplay happen here.
+	
+	
 };

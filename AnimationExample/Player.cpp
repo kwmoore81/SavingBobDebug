@@ -1,7 +1,7 @@
 #include "GameState.h"
 #include "GameObject.h"
 #include "Player.h"
-
+#include "Enemy.h"
 
 void Player::update()
 
@@ -10,6 +10,7 @@ void Player::update()
 		
 		fireDelay -= sfw::getDeltaTime();
 		eFireDelay -= sfw::getDeltaTime();
+		
 		// example of switching between animations
 		if (sfw::getKey(257) && fireDelay < 0)
 		{
@@ -21,18 +22,16 @@ void Player::update()
 			eFireDelay = eRateOfFire;
 			gs()->makeEnemy(850, randY , -100, 0, 10.f); // Now we can use this to draw stuff!
 		}
-		// example of switching between animations
-		/*if (sfw::getKey(' '))
-		{
-		animTimer = 0;
-		animationName = "Thrusters";
-		}*/
-		GameObject::update();
-		if (animTimer > getAnimationDuration(textureName, animationName))
+		
+
+		animTimer += sfw::getDeltaTime();
+		currentFrame = sampleAnimation(textureName, animationName, animTimer);
+		//GameObject::update();
+		/*if (animTimer > getAnimationDuration(textureName, animationName))
 		{
 			animTimer = 0;
 			animationName = "Thrusters";
-		}
+		}*/
 		
 
 		sdt = sfw::getDeltaTime() * speed;
